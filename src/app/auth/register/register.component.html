@@ -1,0 +1,51 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      formControlName="username"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Name"
+      formControlName="name"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Repeat Password"
+      formControlName="rePassword"
+    />
+  </div>
+  <div class="mt-4 pt-2">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+  </div>
+</form>

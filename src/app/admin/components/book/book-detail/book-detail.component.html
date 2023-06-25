@@ -1,0 +1,73 @@
+<form #myForm="ngForm" (ngSubmit)="submitForm()" class="detail-form">
+  <h2 mat-dialog-title>Book Details</h2>
+  <mat-dialog-content class="detail-content">
+    <div class="example-full-width input-group mb-3 detail-full-width">
+      <span class="input-group-text" id="basic-addon1">Title</span>
+      <input
+        matInput 
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        [(ngModel)]="bookDetail.title"
+        required
+      />
+    </div >
+
+    <div class="example-full-width input-group mb-3 detail-half-width">
+      <span class="input-group-text" id="basic-addon1">$</span>
+      <input
+        matInput 
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        [(ngModel)]="bookDetail.price"
+        required
+      />
+    </div>
+
+    <div class="example-full-width input-group mb-3 detail-half-width">
+      <span class="input-group-text" id="basic-addon1">Category</span>
+      <mat-select
+        id="category"
+        name="category"
+        class="form-control"
+        [(ngModel)]="bookDetail.category"
+        required
+      >
+        <mat-option *ngFor="let option of categoryOptions" [value]="option">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </div>
+
+    <div class="example-full-width input-group mb-3 detail-half-width">
+      <span class="input-group-text" id="basic-addon1">In Stock</span>
+      <input
+        class="form-control"
+        type="number"
+        id="inStock"
+        name="inStock"
+        [(ngModel)]="bookDetail.inStock"
+        required
+      />
+    </div>
+
+    <label for="basic-url" class="form-label">Description</label>
+    <div class="example-full-width input-group mb-3">
+      <textarea
+        class="form-control text-area"
+        id="description"
+        name="description"
+        [(ngModel)]="bookDetail.description"
+        required
+      ></textarea>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" class="btn btn-warning" mat-dialog-close>Cancel</button>
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </mat-dialog-actions>
+</form>

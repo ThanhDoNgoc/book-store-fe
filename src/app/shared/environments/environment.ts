@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  book: {
+    getBooks: 'api/books',
+    getBookDetail: 'api/book',
+  },
+
+  auth: {
+    login: 'api/auth',
+    register: 'api/auth',
+  },
+
+  user: {
+    getUsers: 'api/users'
+  }
 };
 
 /*

@@ -1,0 +1,77 @@
+<section class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <app-product-filter
+          [optionName]="optionName"
+          [optionList]="optionList"
+          (filter)="onFilter($event)" 
+        ></app-product-filter>
+      </div>
+      <div class="col-lg-9">
+        <div class="row">
+          <ng-template ngFor let-book [ngForOf]="books" let-i="index">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="card w-100 my-2 shadow-2-strong">
+                <div class="card shadow">
+                  <img
+                    src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp"
+                    alt="watch large"
+                  />
+                  <div
+                    class="card-footer bg-gray-200 border-top border-gray-300 p-4"
+                  >
+                    <a href="#" class="h5">{{ book.title }}</a>
+                    <div class="d-flex mt-2">
+                      <span class="badge bg-primary me-2">{{
+                        book.category
+                      }}</span>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center mt-3"
+                    >
+                      <span class="h6 mb-0 text-gray">{{
+                        book.price | currency
+                      }}</span>
+                      <a class="btn btn-primary shadow-0 me-1" href="#">
+                        <span class="fas fa-cart-plus me-2"></span> Add to cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <hr />
+
+        <!-- Pagination -->
+        <nav
+          aria-label="Page navigation example"
+          class="d-flex justify-content-center mt-3"
+        >
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
