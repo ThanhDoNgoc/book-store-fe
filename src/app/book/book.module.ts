@@ -5,6 +5,7 @@ import { BookRoutingModule } from './book-routing.module';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     BookRoutingModule,
     SharedModule,
+    RouterModule
   ],
   providers: [
     SharedModule,

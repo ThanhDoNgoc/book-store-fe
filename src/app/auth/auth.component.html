@@ -15,7 +15,7 @@
           </li>
         </ul>
         <div *ngIf="activeTab === 'login'">
-          <app-login></app-login>
+          <app-login (user)="onLogin($event)" ></app-login>
         </div>
         <div *ngIf="activeTab === 'register'">
           <app-register></app-register>

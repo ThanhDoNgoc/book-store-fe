@@ -1,7 +1,7 @@
 import { Category } from './book.model';
 
 export default interface BookDetail {
-  id: number;
+  id?: number;
   title: string;
   price: number;
   category: Category;

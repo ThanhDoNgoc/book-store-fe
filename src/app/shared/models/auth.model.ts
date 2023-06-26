@@ -3,4 +3,5 @@ export default interface Auth {
   email: string;
   role: string;
   permission: string[];
+  token: string;
 }  

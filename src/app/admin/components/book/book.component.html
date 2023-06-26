@@ -1,5 +1,14 @@
 <section class="admin-book">
-  <div class="container">
+  <div class="container row">
+    <div>
+      <button
+        type="button"
+        class="btn btn-success create-button"
+        (click)="createBook()"
+      >
+        Create Book
+      </button>
+    </div>
     <div class="row">
       <div class="col-lg-3">
         <app-product-filter
@@ -35,7 +44,7 @@
                   mat-icon-button
                   class="icon-button"
                   color="primary"
-                  (click)="edit(element)"
+                  (click)="editBook(element)"
                 >
                   <mat-icon>edit</mat-icon>
                 </button>
@@ -47,8 +56,9 @@
           </table>
 
           <mat-paginator
-            [length]="dataSource.data.length"
-            [pageSizeOptions]="[5, 10, 20]"
+            [length]="300"
+            [pageSize]="12"
+            (page)="loadPage($event)"
             showFirstLastButtons
             aria-label="Select page of periodic elements"
           >

@@ -5,7 +5,7 @@
         <app-product-filter
           [optionName]="optionName"
           [optionList]="optionList"
-          (filter)="onFilter($event)" 
+          (filter)="onFilter($event)"
         ></app-product-filter>
       </div>
       <div class="col-lg-9">
@@ -15,25 +15,21 @@
               <div class="card w-100 my-2 shadow-2-strong">
                 <div class="card shadow">
                   <img
-                    src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp"
+                    src="https://binhbanbook.com/wp-content/uploads/2023/02/z4136274435886_08837faf1d243f3808ed7dc6339e7713.jpg"
                     alt="watch large"
                   />
                   <div
                     class="card-footer bg-gray-200 border-top border-gray-300 p-4"
                   >
-                    <a href="#" class="h5">{{ book.title }}</a>
+                    <a routerLink="/book/{{ book.id }}" class="h5">{{ book.title }}</a>
                     <div class="d-flex mt-2">
-                      <span class="badge bg-primary me-2">{{
-                        book.category
-                      }}</span>
+                      <span class="badge bg-primary me-2">{{ book.category }}</span>
                     </div>
                     <div
                       class="d-flex justify-content-between align-items-center mt-3"
                     >
-                      <span class="h6 mb-0 text-gray">{{
-                        book.price | currency
-                      }}</span>
-                      <a class="btn btn-primary shadow-0 me-1" href="#">
+                      <span class="h6 mb-0 text-gray">{{ book.price | currency }}</span>
+                      <a class="btn btn-primary shadow-0 me-1">
                         <span class="fas fa-cart-plus me-2"></span> Add to cart
                       </a>
                     </div>

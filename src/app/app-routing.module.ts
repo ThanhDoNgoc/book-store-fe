@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'book', loadChildren: () => BookModule },
   { path: 'auth', loadChildren: () => AuthModule },
   { path: 'admin', loadChildren: () => AdminModule },
+  { path: '', redirectTo: 'book', pathMatch: 'full'},
 ];
 
 @NgModule({

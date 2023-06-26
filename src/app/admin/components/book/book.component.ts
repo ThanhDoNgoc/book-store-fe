@@ -1,49 +1,63 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Book, { Category } from '../../../shared/models/book.model';
 import { BookService } from '../../../shared/services/book.services';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import Filter, { Option } from '../../../shared/models/filter.model';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
 })
-export class BookComponent implements OnInit, AfterViewInit {
+export class BookComponent implements OnInit {
   optionName: string = 'Category';
   optionList: string[] = Object.values(Category);
 
   displayedColumns: string[] = ['title', 'price', 'category', 'edit'];
   dataSource = new MatTableDataSource<Book>([]);
 
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  filter: Filter = new Filter(1, 12);
 
   constructor(private bookService: BookService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getBooks();
-    this.dataSource.paginator = this.paginator;
+    this.getBooks(this.filter);
   }
 
-  private async getBooks() {
-    this.bookService.getBook().subscribe((books: Book[]) => {
+  getBooks(filter: Filter) {
+    this.bookService.getBook(filter).subscribe((books: Book[]) => {
       this.dataSource = new MatTableDataSource<Book>(books);
     });
   }
 
   onFilter(filter: any) {
-    console.log(filter);
+    const option: Option = {
+      key: filter.optionName,
+      value: filter.selectOptions,
+    };
+    this.filter.options = option;
+    this.filter.searchKey = filter.searchKey;
+    this.getBooks(this.filter);
   }
 
-  edit(book: Book) {
+  loadPage(page: any) {
+    this.filter.page = page.pageIndex;
+    this.getBooks(this.filter);
+  }
+
+  editBook(book: Book) {
+    this.openDialog(book);
+  }
+
+  createBook() {
+    this.openDialog();
+  }
+
+  openDialog(book?: Book) {
     this.dialog.open(BookDetailComponent, {
-      data: book,
+      data: book || undefined,
       height: '600px',
       width: '800px',
     });

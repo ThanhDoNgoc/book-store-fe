@@ -2,10 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
+import { AuthGuard } from '../shared/guard/auth.guard';
+import { Permission } from '../shared/enum/permission.enum';
 
 const routes: Routes = [
-  { path: 'book', component: BookComponent },
-  { path: 'user', component: UserComponent },
+  {
+    path: 'book',
+    component: BookComponent,
+    canActivate: [AuthGuard],
+    data: { permission: Permission.Book_Permission },
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+    data: { permission: Permission.User_Permission },
+  },
 ];
 
 @NgModule({

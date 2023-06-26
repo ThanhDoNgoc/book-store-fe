@@ -36,6 +36,7 @@ export class ProductFilterComponent implements OnInit {
   emitFilter(): void {
     const filter: any = {
       searchKey: this.searchKey,
+      optionName: this.optionName,
       selectOptions: this.selectOptions,
     };
     this.filter.emit(filter);

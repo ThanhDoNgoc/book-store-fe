@@ -1,16 +1,24 @@
 <header class="p-3 bg-primary text-white">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Products</a></li>
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        <li><a routerLink="/book" class="nav-link px-2 text-white">Home</a></li>
+        <!-- <li *ngIf="userName"><a routerLink="/admin/user" class="nav-link px-2 text-white">Manage User</a></li>  -->
+        <li *ngIf="userPermissions?.includes('Book_Permission')" ><a routerLink="/admin/book" class="nav-link px-2 text-white">Manage Book</a></li>
+        <li *ngIf="userPermissions?.includes('User_Permission')" ><a routerLink="/admin/user" class="nav-link px-2 text-white">Manage User</a></li>
       </ul>
       <div class="text-end">
-        <button type="button" class="btn btn-warning">Login</button>
+        <button *ngIf="!userName" routerLink="/auth" type="button" class="btn btn-success">
+          Login
+        </button>
+        
+        <button *ngIf="userName" type="button" class="btn btn-warning" (click)="logout()">
+          Logout
+        </button>
       </div>
     </div>
   </div>

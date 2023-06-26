@@ -7,6 +7,8 @@ export const environment = {
   book: {
     getBooks: 'api/books',
     getBookDetail: 'api/book',
+    createBook: 'api/success',
+    updateBook: 'api/success'
   },
 
   auth: {

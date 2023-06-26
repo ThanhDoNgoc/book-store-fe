@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthGuard } from '../shared/guard/auth.guard';
 
 @NgModule({
   declarations: [BookComponent, UserComponent, BookDetailComponent],
@@ -29,5 +30,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule
   ],
   exports: [BookComponent, UserComponent],
+  providers: [ AuthGuard ]
 })
 export class AdminModule {}
