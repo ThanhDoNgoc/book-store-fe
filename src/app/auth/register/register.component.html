@@ -1,44 +1,91 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="input-group mb-3">
+  <div class="mb-3">
     <input
       type="text"
       class="form-control"
       placeholder="Username"
       formControlName="username"
     />
+    <div
+      *ngIf="
+        registerForm.get('username')!.invalid &&
+        registerForm.get('username')!.touched
+      "
+      class="text-danger"
+    >
+      Please enter a username.
+    </div>
   </div>
-  <div class="input-group mb-3">
+  <div class="mb-3">
     <input
       type="text"
       class="form-control"
       placeholder="Name"
       formControlName="name"
     />
+    <div
+      *ngIf="
+        registerForm.get('name')!.invalid && registerForm.get('name')!.touched
+      "
+      class="text-danger"
+    >
+      Please enter a username.
+    </div>
   </div>
-  <div class="input-group mb-3">
+
+  <div class="mb-3">
     <input
       type="text"
       class="form-control"
       placeholder="Email"
       formControlName="email"
     />
+    <div
+      *ngIf="
+        registerForm.get('email')!.invalid && registerForm.get('email')!.touched
+      "
+      class="text-danger"
+    >
+      Please enter a valid email.
+    </div>
   </div>
-  <div class="input-group mb-3">
+
+  <div class="mb-3">
     <input
       type="password"
       class="form-control"
       placeholder="Password"
       formControlName="password"
     />
+    <div
+      *ngIf="
+        registerForm.get('password')!.invalid &&
+        registerForm.get('password')!.touched
+      "
+      class="text-danger"
+    >
+      Please enter a password.
+    </div>
   </div>
-  <div class="input-group mb-3">
+
+  <div class="mb-3">
     <input
       type="password"
       class="form-control"
       placeholder="Repeat Password"
       formControlName="rePassword"
     />
+    <div
+      *ngIf="
+        registerForm.get('rePassword')!.invalid &&
+        registerForm.get('rePassword')!.touched
+      "
+      class="text-danger"
+    >
+      Please re-enter password.
+    </div>
   </div>
+  <div class="mb-3 text-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
   <div class="mt-4 pt-2">
     <button
       type="submit"

@@ -12,6 +12,7 @@ export class ProductFilterComponent implements OnInit {
   @Output() filter: EventEmitter<{
     selectOptions: string[];
     searchKey: string;
+    optionName: string
   }> = new EventEmitter();
   
   selectOptions: string[] = [];

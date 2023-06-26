@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StorageService {
-  private nameSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>('');
-  private permissionsSubject: BehaviorSubject<string[] | undefined> = new BehaviorSubject<string[] | undefined>([]);
+  private nameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private permissionsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   constructor(private cookieService: CookieService) {
     const nameFromCookie = this.getProperty('name');
@@ -17,16 +17,16 @@ export class StorageService {
     this.permissionsSubject.next(permissionsFromCookie);
   }
 
-  getName(): Observable<string | undefined> {
+  getName(): Observable<string> {
     return this.nameSubject.asObservable();
   }
 
-  getPermissionList(): Observable<string[] | undefined> {
+  getPermissionList(): Observable<string[]> {
     return this.permissionsSubject.asObservable();
   }
 
-  getProperty(key: string): string | undefined {
-    return this.cookieService.get(key) || undefined;
+  getProperty(key: string): string {
+    return this.cookieService.get(key) || '';
   }
 
   getPermission(): string[] {

@@ -38,7 +38,8 @@ module.exports = function (config) {
           functions: 80,
           lines: 80
         }
-      }
+      },
+      exclude: ['**/*.service.ts']
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

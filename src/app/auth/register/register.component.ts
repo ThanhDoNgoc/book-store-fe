@@ -1,15 +1,23 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  OnDestroy,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import User from '../../shared/models/auth.model';
 import { AuthService } from '../../shared/services/auth.services';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   @Output() user: EventEmitter<User> = new EventEmitter();
+  errorMessage: string = '';
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -20,25 +28,40 @@ export class RegisterComponent implements OnInit {
   });
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  destroy$ = new Subject();
+
+  ngOnInit(): void {
+    this.registerForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.errorMessage = '';
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
 
   onSubmit() {
     if (
       this.registerForm.controls['password'].value !==
       this.registerForm.controls['rePassword'].value
     ) {
+      this.errorMessage = 'password and repeat password must be the same';
       return;
     }
-
-    this.authService
-      .register({
-        name: this.registerForm.controls['name'].value,
-        username: this.registerForm.controls['username'].value,
-        email: this.registerForm.controls['email'].value,
-        password: this.registerForm.controls['password'].value,
-      })
-      .subscribe((user) => {
-        this.user.emit(user)
-      });
+    if (!this.registerForm.invalid) {
+      this.authService
+        .register({
+          name: this.registerForm.controls['name'].value,
+          username: this.registerForm.controls['username'].value,
+          email: this.registerForm.controls['email'].value,
+          password: this.registerForm.controls['password'].value,
+        })
+        .subscribe((user) => {
+          this.user.emit(user);
+        });
+    }
   }
 }

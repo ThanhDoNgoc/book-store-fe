@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import User, { Role } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -18,17 +17,10 @@ export class UserComponent implements OnInit {
 
   dataSource = new MatTableDataSource<User>([]);
 
-  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-
-  ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator
-  }
-
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.getUsers();
-    this.dataSource.paginator = this.paginator
   }
 
   private async getUsers() {

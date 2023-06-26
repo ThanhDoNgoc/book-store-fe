@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,22 +8,35 @@ import { StorageService } from '../../services/storage.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  userName: string | undefined = undefined;
+  userName: string = '';
   userPermissions: string[] = [];
 
-  constructor(private storageService: StorageService) {
-    this.storageService.getName().subscribe((name) => {
-      this.userName = name;
-    });
+  destroy$ = new Subject();
 
-    this.storageService.getPermissionList().subscribe((permissions) => {
-      this.userPermissions = permissions || [];
-    });
+  constructor(private storageService: StorageService) {
+    this.storageService
+      .getName()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((name) => {
+        this.userName = name;
+      });
+
+    this.storageService
+      .getPermissionList()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((permissions) => {
+        this.userPermissions = permissions || [];
+      });
   }
 
   ngOnInit(): void {
-    this.userName = this.storageService.getProperty('name') || undefined;
-    this.userPermissions = this.storageService.getPermission() || [];
+    this.userName = this.storageService.getProperty('name');
+    this.userPermissions = this.storageService.getPermission();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 
   logout() {

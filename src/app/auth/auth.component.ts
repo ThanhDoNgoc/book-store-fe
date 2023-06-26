@@ -23,7 +23,6 @@ export class AuthComponent implements OnInit {
       user.permission
     );
     
-
     this.router.navigate(['/'])
   }
 }
