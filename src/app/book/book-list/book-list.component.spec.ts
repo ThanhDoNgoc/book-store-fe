@@ -11,13 +11,15 @@ describe('BookListComponent', () => {
 
   const book: Book[] = [
     {
-      id: 1,
+      _id: '1',
+      image: '1',
       title: 'Book 1',
       price: 10,
       category: Category.Comedy,
     },
     {
-      id: 2,
+      _id: '2',
+      image: '1',
       title: 'Book 2',
       price: 20,
       category: Category.Drama,
@@ -61,7 +63,7 @@ describe('BookListComponent', () => {
     const filter: any = {
       optionName: 'Category',
       selectOptions: ['drama'],
-      searchKey: 'Book',
+      search: 'Book',
     };
     component.onFilter(filter);
     expect(bookService.getBook).toHaveBeenCalled();

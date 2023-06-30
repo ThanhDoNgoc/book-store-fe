@@ -18,7 +18,10 @@ import { AuthGuard } from './guard/auth.guard';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(MockService, { delay: 200 }),
+    HttpClientInMemoryWebApiModule.forRoot(MockService, {
+      passThruUnknownUrl: true,
+      delay: 200
+    }),
     RouterModule,
     
   ],

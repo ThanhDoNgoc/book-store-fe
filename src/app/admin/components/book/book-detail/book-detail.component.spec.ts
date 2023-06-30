@@ -23,7 +23,7 @@ describe('BookDetailComponent', () => {
   const book = {
     title: 'Book 1',
     price: 10,
-    inStock: 5,
+    quantity: 5,
     description: 'Description',
     category: Category.Drama,
   };

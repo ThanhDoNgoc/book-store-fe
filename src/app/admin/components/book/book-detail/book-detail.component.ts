@@ -13,7 +13,8 @@ export class BookDetailComponent implements OnInit {
   bookDetail: BookDetail = {
     title: '',
     price: 0,
-    inStock: 0,
+    quantity: 0,
+    image: '',
     description: '',
     category: Category.Drama,
   };
@@ -27,7 +28,7 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.book) {
-      this.bookService.getBookDetail(this.book.id).subscribe((book) => {
+      this.bookService.getBookDetail(this.book._id).subscribe((book) => {
         this.bookDetail = book;
       });
     }

@@ -12,8 +12,7 @@
             <img
               style="max-width: 100%; max-height: 100vh; margin: auto"
               class="rounded-4 fit"
-              src="https://binhbanbook.com/wp-content/uploads/2023/02/z4136274435886_08837faf1d243f3808ed7dc6339e7713.jpg"
-            />
+              src={{book.image}}>
           </a>
         </div>
       </aside>
@@ -32,7 +31,7 @@
           <div class="d-flex flex-row my-3">
             <span class="text-muted"
               ><i class="fas fa-shopping-basket fa-sm mx-1"></i
-              >{{ book.inStock }}</span
+              >{{ book.quantity }}</span
             >
             <span class="text-success ms-2">In stock</span>
           </div>

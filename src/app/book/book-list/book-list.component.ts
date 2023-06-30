@@ -13,7 +13,7 @@ export class BookListComponent implements OnInit {
   optionName: string = 'Category';
   optionList: string[] = Object.values(Category);
 
-  filter: Filter = new Filter(1,12)
+  filter: Filter = new Filter(1, 12);
 
   constructor(private bookService: BookService) {}
 
@@ -22,9 +22,11 @@ export class BookListComponent implements OnInit {
   }
 
   private async getBooks(filter: Filter) {
-    this.bookService.getBook(filter).subscribe((books: Book[]) => {
-      this.books = books;
-    });
+    this.bookService
+      .getBook(filter)
+      .subscribe((result: { books: Book[]; total: number }) => {
+        this.books = result.books;
+      });
   }
 
   onFilter(filter: any) {
@@ -33,26 +35,25 @@ export class BookListComponent implements OnInit {
       value: filter.selectOptions,
     };
     this.filter.options = option;
-    this.filter.searchKey = filter.searchKey;
-    this.filter.page = 1;
-    this.filter.limit = 12
+    this.filter.search = filter.search;
+    this.filter.page = 0;
+    this.filter.limit = 12;
 
     this.getBooks(this.filter);
   }
 
-  nextPage(){
+  nextPage() {
     this.filter.page = this.filter.page! + 1;
-    this.getBooks(this.filter)
+    this.getBooks(this.filter);
   }
 
-  previousPage(){
+  previousPage() {
     this.filter.page = this.filter.page! - 1;
-    this.getBooks(this.filter)
+    this.getBooks(this.filter);
   }
 
-  toPage(page: number){
+  toPage(page: number) {
     this.filter.page = page;
-    this.getBooks(this.filter)
+    this.getBooks(this.filter);
   }
-  
 }

@@ -18,7 +18,7 @@ describe('BookDetailComponent', () => {
     title: 'title',
     price: 1,
     category: Category.Comedy,
-    inStock: 12,
+    quantity: 12,
     description: 'description',
   };
 

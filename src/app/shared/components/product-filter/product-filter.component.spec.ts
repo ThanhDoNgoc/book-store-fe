@@ -26,14 +26,14 @@ describe('ProductFilterComponent', () => {
   it('should emit filter when onSubmit is called', () => {
     spyOn(component.filter, 'emit');
 
-    component.searchKey = 'example';
+    component.search = 'example';
     component.selectOptions = ['option1', 'option2'];
     component.optionName = 'exampleOption';
 
     component.onSubmit();
 
     expect(component.filter.emit).toHaveBeenCalledWith({
-      searchKey: 'example',
+      search: 'example',
       optionName: 'exampleOption',
       selectOptions: ['option1', 'option2'],
     });

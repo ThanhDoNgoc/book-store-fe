@@ -19,8 +19,8 @@ export class MockService implements InMemoryDbService {
     if (reqInfo.collectionName === 'auth') {
       const { email } = reqInfo.utils.getJsonBody(reqInfo.req);
 
-      const users = reqInfo.collection as any[];
-      const user = users.find((u) => u.email === email);
+      const auth = reqInfo.collection as any[];
+      const user = auth.find((u) => u.email === email);
 
       if (user) {
         const response: ResponseOptions = {

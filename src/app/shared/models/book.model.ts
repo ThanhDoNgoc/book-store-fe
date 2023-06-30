@@ -1,7 +1,8 @@
 export default interface Book {
-  id: number;
+  _id: string;
   title: string;
   price: number;
+  image: string;
   category: Category;
 }
 

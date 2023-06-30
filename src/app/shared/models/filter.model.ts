@@ -1,18 +1,18 @@
 export default class Filter {
-  page?: number;
-  limit?: number;
+  page: number;
+  limit: number;
   options?: Option;
-  searchKey?: string;
+  search?: string;
   constructor(
     page?: number,
     limit?: number,
     options?: Option,
-    searchKey?: string
+    search?: string
   ) {
-    this.page = page || 1;
+    this.page = page || 0;
     this.limit = limit || 12;
     this.options = options;
-    this.searchKey = searchKey;
+    this.search = search;
 
   }
 }

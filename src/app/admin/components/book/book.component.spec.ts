@@ -13,8 +13,8 @@ describe('BookComponent', () => {
   let matDialog: MatDialog;
 
   const books = [
-    { id: 1, title: 'test book 1', price: 10, category: Category.Comedy },
-    { id: 2, title: 'test book 2', price: 15, category: Category.Sport },
+    { _id: 1, image:'1', title: 'test book 1', price: 10, category: Category.Comedy },
+    { _id: 2, image:'1', title: 'test book 2', price: 15, category: Category.Sport },
   ];
 
   beforeEach(async () => {
@@ -24,7 +24,7 @@ describe('BookComponent', () => {
         {
           provide: BookService,
           useValue: {
-            getBook: (filter: Filter) => of(books),
+            getBook: (filter: Filter) => of({books: books, total: 12}),
           },
         },
         {
@@ -59,7 +59,7 @@ describe('BookComponent', () => {
     const filter = {
       optionName: 'Category',
       selectOptions: ['Fiction'],
-      searchKey: 'example',
+      search: 'example',
     };
     component.onFilter(filter);
 
@@ -79,9 +79,10 @@ describe('BookComponent', () => {
     spyOn(component, 'openDialog');
 
     const book: Book = {
-      id: 1,
+      _id: '1',
       title: 'test',
       price: 10,
+      image: '1',
       category: Category.Drama,
     };
     component.editBook(book);

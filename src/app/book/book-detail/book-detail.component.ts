@@ -11,7 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class BookDetailComponent implements OnInit, OnDestroy {
   book!: BookDetail;
-  id!: number;
+  id!: string;
 
   destroy$ = new Subject();
   
@@ -22,9 +22,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
-        this.id = +params['id'];
+        this.id = params['id'];
       });
   }
+
+  
 
   ngOnInit(): void {
     this.getBooks(this.id);
@@ -35,7 +37,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private async getBooks(id: number) {
+  private async getBooks(id: string) {
     this.bookService.getBookDetail(id).subscribe((book: BookDetail) => {
       this.book = book;
     });

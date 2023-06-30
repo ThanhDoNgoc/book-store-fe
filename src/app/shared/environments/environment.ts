@@ -2,13 +2,16 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const url = {
+  book: 'http://localhost:3000/api',
+};
 export const environment = {
   production: false,
   book: {
-    getBooks: 'api/books',
-    getBookDetail: 'api/book',
-    createBook: 'api/success',
-    updateBook: 'api/success'
+    getBooks: `${url.book}`,
+    getBookDetail: `${url.book}/:id`,
+    createBook: `${url.book}`,
+    updateBook: `${url.book}`,
   },
 
   auth: {
@@ -17,9 +20,29 @@ export const environment = {
   },
 
   user: {
-    getUsers: 'api/users'
-  }
+    getUsers: 'api/users',
+  },
 };
+
+
+// export const environment = {
+//   production: false,
+//   book: {
+//     getBooks: 'api/books',
+//     getBookDetail: 'api/book',
+//     createBook: 'api/success',
+//     updateBook: 'api/success'
+//   },
+
+//   auth: {
+//     login: 'api/auth',
+//     register: 'api/auth',
+//   },
+
+//   user: {
+//     getUsers: 'api/users'
+//   }
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

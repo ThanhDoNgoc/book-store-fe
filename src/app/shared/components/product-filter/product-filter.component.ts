@@ -11,12 +11,12 @@ export class ProductFilterComponent implements OnInit {
   @Input() canSearch: Boolean = true;
   @Output() filter: EventEmitter<{
     selectOptions: string[];
-    searchKey: string;
+    search: string;
     optionName: string
   }> = new EventEmitter();
   
   selectOptions: string[] = [];
-  searchKey: string = '';
+  search: string = '';
 
   constructor() {}
 
@@ -36,7 +36,7 @@ export class ProductFilterComponent implements OnInit {
 
   emitFilter(): void {
     const filter: any = {
-      searchKey: this.searchKey,
+      search: this.search,
       optionName: this.optionName,
       selectOptions: this.selectOptions,
     };
