@@ -16,7 +16,7 @@ import Filter from '../models/filter.model';
 })
 export class BookService {
   constructor(private httpClient: HttpClient) {}
-  
+
   getBook(filter: Filter): Observable<{ books: Book[]; total: number }> {
     console.log('api/getBook ', filter);
     let url =
@@ -25,9 +25,9 @@ export class BookService {
       url += `&search=${filter.search}`;
     }
     if (filter.options) {
-      filter.options.value.forEach((value)=>{
-        url+= `&${filter.options!.key.toLocaleLowerCase()}=${value}`
-      })
+      filter.options.value.forEach((value) => {
+        url += `&${filter.options!.key.toLocaleLowerCase()}=${value}`;
+      });
     }
     return this.httpClient.get<{ books: Book[]; total: number }>(url);
   }
@@ -39,24 +39,11 @@ export class BookService {
   }
 
   postBook(book: BookDetail): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer 1}`,
-    });
-    console.log('POST api/book/:id', book, headers);
-    return this.httpClient.get<any>(environment.book.createBook, {
-      headers: headers,
-    });
+    return this.httpClient.post<any>(environment.book.createBook, book);
   }
 
-  putBook(book: BookDetail): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer 1}`,
-    });
-    console.log('PUT api/book/:id', book, headers);
-    return this.httpClient.get<any>(environment.book.updateBook, {
-      headers: headers,
-    });
+  putBook(id: string, book: BookDetail): Observable<any> {
+    const url = environment.book.updateBook.replace(':id', id);
+    return this.httpClient.put<any>(url, book);
   }
 }

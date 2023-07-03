@@ -35,11 +35,12 @@ export class BookDetailComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.bookDetail);
     if (this.book) {
-      this.bookService.putBook(this.bookDetail).subscribe((res) => {
-        this.dialogRef?.close();
-      });
+      this.bookService
+        .putBook(this.book._id, this.bookDetail)
+        .subscribe((res) => {
+          this.dialogRef?.close();
+        });
     } else {
       this.bookService.postBook(this.bookDetail).subscribe((res) => {
         this.dialogRef?.close();

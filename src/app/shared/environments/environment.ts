@@ -11,7 +11,7 @@ export const environment = {
     getBooks: `${url.book}`,
     getBookDetail: `${url.book}/:id`,
     createBook: `${url.book}`,
-    updateBook: `${url.book}`,
+    updateBook: `${url.book}/:id`,
   },
 
   auth: {

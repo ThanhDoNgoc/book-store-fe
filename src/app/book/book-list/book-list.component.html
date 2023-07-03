@@ -15,7 +15,7 @@
               <div class="card w-100 my-2 shadow-2-strong">
                 <div class="card shadow">
                   <img
-                    src="https://binhbanbook.com/wp-content/uploads/2023/02/z4136274435886_08837faf1d243f3808ed7dc6339e7713.jpg"
+                    src="{{ book.image }}"
                     alt="watch large"
                   />
                   <div
@@ -43,30 +43,15 @@
         <hr />
 
         <!-- Pagination -->
-        <nav
-          aria-label="Page navigation example"
-          class="d-flex justify-content-center mt-3"
-        >
-          <ul class="pagination">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <mat-paginator
+            [length]="dataLength"
+            [pageSize]="12"
+            [pageIndex]="filter.page"
+            (page)="loadPage($event)"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+          >
+          </mat-paginator>
       </div>
     </div>
   </div>

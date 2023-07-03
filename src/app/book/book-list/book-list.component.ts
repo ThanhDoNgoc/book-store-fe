@@ -10,6 +10,7 @@ import Filter, { Option } from '../../shared/models/filter.model';
 })
 export class BookListComponent implements OnInit {
   books: Book[] = [];
+  dataLength = 0;
   optionName: string = 'Category';
   optionList: string[] = Object.values(Category);
 
@@ -21,11 +22,12 @@ export class BookListComponent implements OnInit {
     this.getBooks(this.filter);
   }
 
-  private async getBooks(filter: Filter) {
+  getBooks(filter: Filter) {
     this.bookService
       .getBook(filter)
       .subscribe((result: { books: Book[]; total: number }) => {
         this.books = result.books;
+        this.dataLength = result.total;
       });
   }
 
@@ -37,23 +39,18 @@ export class BookListComponent implements OnInit {
     this.filter.options = option;
     this.filter.search = filter.search;
     this.filter.page = 0;
-    this.filter.limit = 12;
 
     this.getBooks(this.filter);
   }
 
-  nextPage() {
-    this.filter.page = this.filter.page! + 1;
+  loadPage(page: any) {
+    this.filter.page = page.pageIndex;
     this.getBooks(this.filter);
-  }
 
-  previousPage() {
-    this.filter.page = this.filter.page! - 1;
-    this.getBooks(this.filter);
-  }
-
-  toPage(page: number) {
-    this.filter.page = page;
-    this.getBooks(this.filter);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }

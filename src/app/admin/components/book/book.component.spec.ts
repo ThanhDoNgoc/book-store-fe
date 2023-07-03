@@ -13,8 +13,8 @@ describe('BookComponent', () => {
   let matDialog: MatDialog;
 
   const books = [
-    { _id: 1, image:'1', title: 'test book 1', price: 10, category: Category.Comedy },
-    { _id: 2, image:'1', title: 'test book 2', price: 15, category: Category.Sport },
+    { _id: '1', image:'1', title: 'test book 1', price: 10, category: Category.Comedy },
+    { _id: '2', image:'1', title: 'test book 2', price: 15, category: Category.Sport },
   ];
 
   beforeEach(async () => {

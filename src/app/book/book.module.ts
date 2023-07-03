@@ -6,6 +6,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { RouterModule } from '@angular/router';
     BookListComponent
   ],
   imports: [
+    MatPaginatorModule,
     CommonModule,
     BookRoutingModule,
     SharedModule,

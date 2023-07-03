@@ -18,7 +18,7 @@ export class BookComponent implements OnInit {
   displayedColumns: string[] = ['title', 'price', 'category', 'edit'];
   dataSource = new MatTableDataSource<Book>([]);
   dataLength = 0;
-  filter: Filter = new Filter(0, 12);
+  filter: Filter = new Filter(0, 10);
 
   constructor(private bookService: BookService, private dialog: MatDialog) {}
 
@@ -42,12 +42,13 @@ export class BookComponent implements OnInit {
     };
     this.filter.options = option;
     this.filter.search = filter.search;
+    this.filter.page = 0;
     this.getBooks(this.filter);
   }
 
   loadPage(page: any) {
     this.filter.page = page.pageIndex;
-    console.log(this.filter);
+    this.filter.limit = page.pageSize;
     this.getBooks(this.filter);
   }
 
@@ -62,7 +63,7 @@ export class BookComponent implements OnInit {
   openDialog(book?: Book) {
     this.dialog.open(BookDetailComponent, {
       data: book || undefined,
-      height: '600px',
+      height: '666px',
       width: '800px',
     });
   }
