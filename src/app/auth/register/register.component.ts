@@ -52,16 +52,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
       return;
     }
     if (!this.registerForm.invalid) {
-      this.authService
-        .register({
-          name: this.registerForm.controls['name'].value,
-          username: this.registerForm.controls['username'].value,
-          email: this.registerForm.controls['email'].value,
-          password: this.registerForm.controls['password'].value,
-        })
-        .subscribe((user) => {
-          this.user.emit(user);
-        });
+      // this.authService
+      //   .register({
+      //     name: this.registerForm.controls['name'].value,
+      //     username: this.registerForm.controls['username'].value,
+      //     email: this.registerForm.controls['email'].value,
+      //     password: this.registerForm.controls['password'].value,
+      //   })
+      //   .subscribe((user) => {
+      //     this.user.emit(user);
+      //   });
     }
   }
 }

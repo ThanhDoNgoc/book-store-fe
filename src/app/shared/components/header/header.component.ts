@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../../services/auth.services';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   destroy$ = new Subject();
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, private authService: AuthService) {
     this.storageService
       .getName()
       .pipe(takeUntil(this.destroy$))
@@ -41,5 +42,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.storageService.clearCookie();
+  }
+
+  login() {
+    this.authService.login();
   }
 }

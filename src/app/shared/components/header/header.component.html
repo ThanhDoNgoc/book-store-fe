@@ -12,7 +12,7 @@
         <li *ngIf="userPermissions?.includes('User_Permission')" ><a routerLink="/admin/user" class="nav-link px-2 text-white">Manage User</a></li>
       </ul>
       <div class="text-end">
-        <button *ngIf="!userName" routerLink="/auth" type="button" class="btn btn-success">
+        <button *ngIf="!userName" type="button" class="btn btn-success" (click)="login()">
           Login
         </button>
         

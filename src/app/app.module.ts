@@ -6,21 +6,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { BookModule } from './book/book.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from 'angular-auth-oidc-client';
 import { AdminModule } from './admin/admin.module';
+import { getAuthConfig } from './shared/services/auth.services';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
+    AuthModule.forRoot({
+      config: getAuthConfig(),
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     BookModule,
     AuthModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -40,21 +40,19 @@ export class LoginComponent implements OnInit,  OnDestroy {
     if (this.loginForm.valid) {
       this.authService
         .login(
-          this.loginForm.controls['email'].value,
-          this.loginForm.controls['password'].value
         )
-        .pipe(
-          catchError((error) => {
-            if (error.status === 401) {
-              this.errorMessage = 'Invalid email or password.';
-            }
-            return [];
-          })
-        )
-        .subscribe((user) => {
-          console.log(user);
-          this.user.emit(user);
-        });
+        // .pipe(
+        //   catchError((error) => {
+        //     if (error.status === 401) {
+        //       this.errorMessage = 'Invalid email or password.';
+        //     }
+        //     return [];
+        //   })
+        // )
+        // .subscribe((user) => {
+        //   console.log(user);
+        //   this.user.emit(user);
+        // });
     }
   }
 }

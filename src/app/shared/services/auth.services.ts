@@ -5,25 +5,34 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import Auth from '../models/auth.model';
 import Register from '../models/register.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import * as keycloak from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(public oidcSecurityService: OidcSecurityService) {}
 
-  login(email: string, password: string): Observable<Auth> {
-    return this.httpClient.post<Auth>(environment.auth.login, {
-      email: email,
-      password: password,
-    });
+  login() {
+    this.oidcSecurityService.authorize();
   }
 
-  register(register: Register): Observable<Auth> {
-    return this.httpClient.get<Auth>(environment.auth.register);
+  logout() {
+    this.oidcSecurityService.logoff();
   }
+}
+
+export function getAuthConfig() {
+  return {
+    authority: 'http://localhost:8080/realms/myrealm',
+    redirectUrl: window.location.origin,
+    postLogoutRedirectUri: window.location.origin,
+    clientId: 'bookstore-cuutui',
+    scope: 'openid profile email offline_access',
+    responseType: 'code',
+    silentRenew: true,
+    useRefreshToken: true,
+    //logLevel: LogLevel.Debug,
+  };
 }
