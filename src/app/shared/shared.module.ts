@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockService } from './mock/mock-service';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { AuthGuard } from './guard/auth.guard';
     ProductFilterComponent,
   ],
   providers: [
-    AuthGuard
   ]
 })
 export class SharedModule { }

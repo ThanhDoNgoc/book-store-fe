@@ -16,5 +16,9 @@ export class AppComponent implements OnInit {
       console.log(isAuthenticated, userData, accessToken, idToken, configId)
       /*...*/
     });
+    this.oidcSecurityService.isAuthenticated().subscribe((res)=>{
+      console.log(1)
+      console.log(res)
+    })
   }
 }

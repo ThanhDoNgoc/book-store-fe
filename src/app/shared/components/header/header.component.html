@@ -12,11 +12,11 @@
         <li *ngIf="userPermissions?.includes('User_Permission')" ><a routerLink="/admin/user" class="nav-link px-2 text-white">Manage User</a></li>
       </ul>
       <div class="text-end">
-        <button *ngIf="!userName" type="button" class="btn btn-success" (click)="login()">
+        <button type="button" class="btn btn-success" (click)="login()">
           Login
         </button>
         
-        <button *ngIf="userName" type="button" class="btn btn-warning" (click)="logout()">
+        <button type="button" class="btn btn-warning" (click)="logout()">
           Logout
         </button>
       </div>

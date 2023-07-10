@@ -14,35 +14,28 @@ export const environment = {
     updateBook: `${url.book}/:id`,
   },
 
-  auth: {
-    login: 'api/auth',
-    register: 'api/auth',
-  },
-
   user: {
     getUsers: 'api/users',
   },
+
+  auth: {
+    authority: 'http://localhost:8080/realms/myrealm',
+    redirectUrl: window.location.origin,
+    postLogoutRedirectUri: window.location.origin,
+    clientId: 'bookstore-cuutui',
+    configId: 'bookstore-cuutui',
+    scope: 'openid profile email offline_access',
+    responseType: 'code',
+    silentRenew: true,
+    useRefreshToken: true,
+    customParamsCodeRequest: {
+      client_secret: 'zGEs8ij62GmhiMUMvYANGpQcNdJ12CyI'
+    },
+    customParamsAuthRequest: {
+      client_secret: 'zGEs8ij62GmhiMUMvYANGpQcNdJ12CyI'
+    },
+  }
 };
-
-
-// export const environment = {
-//   production: false,
-//   book: {
-//     getBooks: 'api/books',
-//     getBookDetail: 'api/book',
-//     createBook: 'api/success',
-//     updateBook: 'api/success'
-//   },
-
-//   auth: {
-//     login: 'api/auth',
-//     register: 'api/auth',
-//   },
-
-//   user: {
-//     getUsers: 'api/users'
-//   }
-// };
 
 /*
  * For easier debugging in development mode, you can import the following file

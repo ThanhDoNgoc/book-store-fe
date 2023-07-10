@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../../services/storage.service';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../services/auth.services';
 
@@ -14,25 +13,11 @@ export class HeaderComponent implements OnInit {
 
   destroy$ = new Subject();
 
-  constructor(private storageService: StorageService, private authService: AuthService) {
-    this.storageService
-      .getName()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((name) => {
-        this.userName = name;
-      });
-
-    this.storageService
-      .getPermissionList()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((permissions) => {
-        this.userPermissions = permissions || [];
-      });
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.userName = this.storageService.getProperty('name');
-    this.userPermissions = this.storageService.getPermission();
+    
   }
 
   ngOnDestroy(): void {
@@ -41,7 +26,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.storageService.clearCookie();
+    console.log(1)
+    this.authService.logout();
   }
 
   login() {

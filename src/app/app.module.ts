@@ -8,20 +8,19 @@ import { BookModule } from './book/book.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from 'angular-auth-oidc-client';
 import { AdminModule } from './admin/admin.module';
-import { getAuthConfig } from './shared/services/auth.services';
+import { environment } from './shared/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     AuthModule.forRoot({
-      config: getAuthConfig(),
+      config: environment.auth,
     }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     BookModule,
-    AuthModule,
     AdminModule,
   ],
   providers: [],
